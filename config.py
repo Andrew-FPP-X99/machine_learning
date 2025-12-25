@@ -1,22 +1,29 @@
-"""
-Konfigurasi Global Proyek
-Lead Architect: [Nama Kamu]
-"""
 from pathlib import Path
 
-# 1. PATH SYSTEM (Otomatis deteksi lokasi file)
+# Paths
 BASE_DIR = Path(__file__).resolve().parent
+DATA_DIR = BASE_DIR / "dataset"
+OUT_DIR  = BASE_DIR / "output"
 
-# Input Files
-PATH_PETA = BASE_DIR / "dataset" / "gadm41_IDN_4.json"
-# CSV hasil clustering tersimpan di output; sesuaikan bila dipindah ke folder lain
-PATH_CSV  = BASE_DIR / "output" / "hasil_clustering.csv"
+FILE_GEOJSON = DATA_DIR / "gadm41_IDN_4.json"
+FILE_CSV     = DATA_DIR / "data_agregat_bencana.csv"
 
-# Output Files
-PATH_OUTPUT = BASE_DIR / "output" / "peta_risiko_final.png"
+IMG_MAP = OUT_DIR / "peta_risiko_final.png"
+IMG_PCA = OUT_DIR / "plot_pca_cluster.png"
 
-# 2. PARAMETER ANALISIS
-# Ubah ini sesuai kebutuhan tim
-TARGET_PROVINSI = "JAWA BARAT"       # Filter wilayah biar ringan
-KOLOM_RISIKO    = "kategori_risiko"  # Nama kolom cluster di CSV
-KOLOM_KOTA_CSV  = "nama_kabupaten_kota" # Nama kolom kota di CSV
+# Analysis Parameters
+TARGET_PROV = "JawaBarat"
+COL_CITY    = "nama_kabupaten_kota"
+COL_CLUSTER = "cluster_label"
+N_CLUSTERS  = 3
+
+# Features to use for Clustering (Must exist in Aggregated CSV)
+# Sesuaikan nama dengan hasil output aggregator.py
+FEATURES = [
+    "risiko_indeks_risiko_bencana",
+    "banjir_jumlah_banjir",
+    "gempa_jumlah_gempa_bumi",
+    "longsor_jumlah_tanah_longsor",
+    "cuaca_jumlah_kerusakan",
+    "rumah_jumlah_kerusakan"
+]

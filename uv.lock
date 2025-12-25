@@ -13,6 +13,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "geopandas" },
     { name = "matplotlib" },
+    { name = "numpy" },
     { name = "openpyxl" },
     { name = "pandas" },
     { name = "pyogrio" },
@@ -24,6 +25,7 @@ dependencies = [
 requires-dist = [
     { name = "geopandas", specifier = ">=1.1.1" },
     { name = "matplotlib", specifier = ">=3.10.8" },
+    { name = "numpy", specifier = ">=2.3.5" },
     { name = "openpyxl", specifier = ">=3.1.5" },
     { name = "pandas", specifier = ">=2.3.3" },
     { name = "pyogrio", specifier = ">=0.12.1" },
