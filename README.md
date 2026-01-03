@@ -133,5 +133,5 @@ uv run main.py
 
 #### 3. **Hasil Output**
 Cek folder output/ untuk melihat:
-> peta_risiko_final.png (Visualisasi Data)
-> cluster_pca_plot.png (Visualisasi Sebaran Data 2D)
+- peta_risiko_final.png (Visualisasi Data)
+- cluster_pca_plot.png (Visualisasi Sebaran Data 2D)
