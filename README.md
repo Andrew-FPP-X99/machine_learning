@@ -17,8 +17,8 @@ Data dari Open Data Jabar. Unduh file-file berikut:
 
 **B. Penggabungan Data (PENTING !!):**
 gabungkan menjadi satu file bernama data_agregat_bencana.csv.
-    > _Caranya_: Bisa pakai Excel (VLOOKUP berdasarkan nama Kota/Kab) atau pakai Python (Pandas Merge).
-    > _Hasil Akhir_: File CSv dengan kolom: nama_kabupaten_kota, indeks_risiko, jml_banjir, jml_gempa, jml_longsor, jml_rusak_berat, dll.
+- _Caranya_: Bisa pakai Excel (VLOOKUP berdasarkan nama Kota/Kab) atau pakai Python (Pandas Merge).
+- _Hasil Akhir_: File CSv dengan kolom: nama_kabupaten_kota, indeks_risiko, jml_banjir, jml_gempa, jml_longsor, jml_rusak_berat, dll.
 
 ## **TAHAP 2: Struktur Kode Modular (Architecture)**
 
@@ -55,14 +55,14 @@ tugas_besar_bencana/
 1. **config.py:** Definisikan lokasi file data_agregat_bencana.csv dan gadm41_IDN_4.json.
 2. **src/data_loader.py:** Fungsi untuk load CSV & GeoJSON + Normalisasi nama kota (Hapus "Kab.", Uppercase)
 3. **src/clustering.py:**
-    > Ambil fitur angka (banjir, gempa, risiko).
-    > Lakukan standardisasi (Scaler).
-    > Jalankan **K-Means.**
-    > Simpan label cluster ke kolom baru di DataFrame.
+    - Ambil fitur angka (banjir, gempa, risiko).
+    - Lakukan standardisasi (Scaler).
+    - Jalankan **K-Means.**
+    - Simpan label cluster ke kolom baru di DataFrame.
 4. **src/evaluator.py:** Hitung skor Silhouette dan Davies-Bouldin dari hasil _K-Means_ tadi. Berikan rekomendasi prioritas mitigasi (Misal: Cluster 1 = Risiko Tinggi).
 5. **src/visualizer.py:**
-    > Fungsi plot_pca(): Gambar scatter plot 2D.
-    > Fungsi generate_map(): Gambar peta Jabar warna-warni.
+    - Fungsi plot_pca(): Gambar scatter plot 2D.
+    - Fungsi generate_map(): Gambar peta Jabar warna-warni.
 6. **main.py:** Panggil semua fungsi di atas secara berurutan.
 
 ## **TAHAP 4: Eksekusi & Tuning**
@@ -72,8 +72,8 @@ Perintah untuk mengeksekusi:    **uv run main.py**
 **Cek Output:**
 1. Apakah muncul angka **Silhouette Score** di terminal? (Target > 0.5 bagus, tapi > 0.3 sudah lumayan uuntuk data _real_).
 2. Cek folder output/:
-    > Apakah ada peta_risiko_jabar.png?
-    > Apakah ada pca_cluster_plot.png?
+    - Apakah ada peta_risiko_jabar.png?
+    - Apakah ada pca_cluster_plot.png?
 
 _Jika hasil clusternya asing (misal Silhouette bernilai minus), coba ubah jumlah n-clusters di file clustering dari 3 menjadi 4 atau 2._
 
@@ -92,9 +92,9 @@ Sesuai dengan spesifikasi tugas, sistem ini melakukan:
 
 ### **Dataset**
 Data bersumber dari **Open Data Jabar**, mencakup:
-> Indeks Risiko Bencana
-> Jumlah Kejadian Banjir, Gempa Bumi, Tanah Longsor, Cuaca Ekstrem
-> Kerusakan Rumah (Berat/Sedang/Ringan)
+- Indeks Risiko Bencana
+- Jumlah Kejadian Banjir, Gempa Bumi, Tanah Longsor, Cuaca Ekstrem
+- Kerusakan Rumah (Berat/Sedang/Ringan)
 
 ### **Metodologi Evaluasi**
 Kami menggunakan pendekatan kuantitatif untuk memvalidasi kualitas cluster:
