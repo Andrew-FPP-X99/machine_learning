@@ -187,9 +187,10 @@ Dari tabel Cluster Profiles di terminal, inilah temuan mesinnya:
 
 ## KESIMPULAN AKHIR
 _Penutup presentasi_
-    1. **Efektivitas:** Sistem berhasil memetakan wilayah Jawa Barat secara otomatis hingga level desa (seperti terlihat di peta_risiko_final.png).
-    2. **Otomatisasi:** Dengan Python, proses update data tahun depan hanya butuh waktu hitungan detik (run script), tidak perlu olah data ulang dari nol.
-    3. **Rekomendasi Kebijakan:** Pemerintah Provinsi Jawa Barat disarankan untuk memfokuskan **80% anggaran rekonstruksi** pada wilayah yang masuk di **cluster 1**, karena dampak kerusakannya paling nyata (39 ribu rumah rusak vs 1 ribu rumah di cluster lain).
+
+1. **Efektivitas:** Sistem berhasil memetakan wilayah Jawa Barat secara otomatis hingga level desa (seperti terlihat di peta_risiko_final.png).
+2. **Otomatisasi:** Dengan Python, proses update data tahun depan hanya butuh waktu hitungan detik (run script), tidak perlu olah data ulang dari nol.
+3. **Rekomendasi Kebijakan:** Pemerintah Provinsi Jawa Barat disarankan untuk memfokuskan **80% anggaran rekonstruksi** pada wilayah yang masuk di **cluster 1**, karena dampak kerusakannya paling nyata (39 ribu rumah rusak vs 1 ribu rumah di cluster lain).
 
 ## MENJAWAB PERTANYAAN DOSEN
 -   **Q: Kenapa pakai K-Means?**
