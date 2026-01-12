@@ -136,7 +136,7 @@ Cek folder output/ untuk melihat:
 - peta_risiko_final.png (Visualisasi Data)
 - cluster_pca_plot.png (Visualisasi Sebaran Data 2D)
 
-# //-----           DESCRIPTIONS            -----//
+# Descriptions
 
 ## LATAR BELAKANG & TUJUAN
 _Bagian ini menjelaskan kenapa proyek ini dibuat._
@@ -161,9 +161,10 @@ Jelaskan bahwa sistem ini berjalan secara **End-to-End Pipeline**:
 _Ini bagian terpenting. Dijelaskan makna angka-angka yang muncul di terminal tadi._
 
 **A. Validasi Model (Bukti Ilmiah)**
+
 Di terminal tertulis:
 
-    - Silhouette Score: 0.4720
+    o Silhouette Score: 0.4720
 
 - **Artinya:** Angka 0.47 menunjukkan bahwa cluster yang terbentuk **terpisah dengan cukup baik**. Data tidak menumpuk acak. Ini membuktikan model K-Means valid untuk digunakan.
 - **PCA Plot (plot_pca_cluster.png):** Gambar titik-titik warna-warni itu adalah bukti visualnya. Kamu bisa lihat titik-titik berkumpul sesuai warnanya, tidak tercampur baur.
@@ -171,7 +172,29 @@ Di terminal tertulis:
 **B. Profil Cluster (Insight Bisnis)**
 Dari tabel Cluster Profiles di terminal, inilah temuan mesinnya:
 
-- **CLUSTER 2: "Zona Aman / Terkendali"**
+- **CLUSTER 0: "Zona Aman / Terkendali"**
+    - _Data:_ Indeks Risiko terendah (129) dan Kerusakan Rumah paling sedikit (1.441 unit).
+    - _Kesimpulan:_ Wilayah ini memiliki frekuensi bencana rendah.
+    - _Tindakan:_ Monitoring rutin saja.
+- **CLUSTER 2: "Zona Waspada (Potensi Tinggi)"**
     - _Data:_ Memiliki **Indeks Risiko Bencana Tertinggi (158)**, namun kerusakan rumahnya "hanya" 5.000-an.
     - _Kesimpulan:_ Wilayah ini secara geografis sangat rawan, namun mungkin infrastrukturnya sudah cukup siap sehingga kerusakannya tidak separah Cluster 1.
     - _Tindakan:_ Perkuat simulasi bencana dan EWS (_Early Warning System_).
+- **CLUSTER 1: "Zona KRITIS / Prioritas Utama" (The Outlier)**
+    - _Data:_ Perhatikan kolom rumah_jumlah_kerusakan. Rata-ratanya **39.343 unit rusak**. Jauh sekali dibandingkan cluster lain.
+    - _Kesimpulan:_ Ini adalah wilayah yang **sudah terbukti** babak belur terkena dampak bencana. Sejarah mencatat kerusakan masif di sini.
+    - _Tindakan:_ **PRIORITAS MITIGASI**. Alokasi dana perbaikan rumah dan relokasi harus difokuskan ke kota-kota yang masuk cluster ini.
+
+## KESIMPULAN AKHIR
+_Penutup presentasi_
+    1. **Efektivitas:** Sistem berhasil memetakan wilayah Jawa Barat secara otomatis hingga level desa (seperti terlihat di peta_risiko_final.png).
+    2. **Otomatisasi:** Dengan Python, proses update data tahun depan hanya butuh waktu hitungan detik (run script), tidak perlu olah data ulang dari nol.
+    3. **Rekomendasi Kebijakan:** Pemerintah Provinsi Jawa Barat disarankan untuk memfokuskan **80% anggaran rekonstruksi** pada wilayah yang masuk di **cluster 1**, karena dampak kerusakannya paling nyata (39 ribu rumah rusak vs 1 ribu rumah di cluster lain).
+
+## MENJAWAB PERTANYAAN DOSEN
+-   **Q: Kenapa pakai K-Means?**
+    -   A: Karena datanya tidak punya label (Unsupervised). Kita ingin mencari pola pengelompokan alami dari data kejadian bencana, bukan memprediksi masa depan.
+-   **Q: Apa itu PCA di gambar outputmu?**
+    -   A: PCA itu teknik untuk menyederhanakan data yang rumit (6 variabel bencana) menjadi gambar 2 dimensi (titik X dan Y) supaya bisa dilihat oleh mata manusia pola penyebarannya.
+-   **Q: Kenapa Peta-nya sampai level Desa padahal datanya Kabupaten?**
+    -   A: Kami menggunakan _Spatial Join._ Data statistik ada di Kabupaten, tapi kami proyeksikan ke peta Desa agar visualisasinya lebih detail dan siap jika nanti ada data spesifik per desa.
