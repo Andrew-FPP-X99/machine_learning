@@ -136,3 +136,42 @@ Cek folder output/ untuk melihat:
 - peta_risiko_final.png (Visualisasi Data)
 - cluster_pca_plot.png (Visualisasi Sebaran Data 2D)
 
+# //-----           DESCRIPTIONS            -----//
+
+## LATAR BELAKANG & TUJUAN
+_Bagian ini menjelaskan kenapa proyek ini dibuat._
+- **Masalah:** Jawa Barat adalah provinsi dengan tingkat kerawanan bencana yang tinggi (banjir, longsor, gempa). Namun, data kejadian dan kerusakan seringkali terpisah-pisah, menyulitkan pemerintah untuk menentukan prioritas bantuan secara objektif.
+- **Solusi:** Membangun sistem **Machine Learning (Unsupervised Learning)** menggunakan algoritma **K-Means Clustering**.
+- **Tujuan:** Mengelompokkan 27 Kabupaten/Kota di Jawa Barat ke dalam **Cluster Risiko** (Tinggi, Sedang, Rendah) berdasarkan data historis (fakta kejadian) dan indeks risiko, bukan sekadar asumsi, untuk optimalisasi alokasi anggaran mitigasi.
+
+## METODOLOGI & ALUR TEKNIS
+_Bagian ini memamerkan kecanggihan kode modular yang telah dibuat._
+
+Jelaskan bahwa sistem ini berjalan secara **End-to-End Pipeline**:
+1. **Data Aggregation (aggregator.py):**
+    - Kita tidak menggabungkan data manual di Excel. Kita menggunakan Python untuk menyatukan 6 dataset (dari folder dataset/) berbeda (Banjir, Gempa, Longsor, Cuaca Ekstrem, Kerusakan Rumah, Indeks Risiko) menjadi satu dataset terpadu secara otomatis.
+2. **Data Preprocessing & Spatial Mapping (data_loader.py & geo_processor.py):**
+    - Tantangan terbesar adalah data spasial. Sistem ini mampu menerjemahkan Kode Wilayah BPS (Angka) menjadi Nama Kota, lalu mencocokkannya dengan Peta Digital (GeoJSON) Level Desa.
+3. **Modeling (clustering.py):**
+    - Menggunakan algoritma **K-Means**. Data dinormalisasi dulu dengan StandardScaler agar angka "Kerusakan Rumah" (puluhan ribu) tidak bias terhadap angka "Gempa" (satuan).
+4. **Evaluasi (evaluator.py):**
+    - Model divalidasi secara matematis, bukan tebak-tebakan.
+
+## ANALISIS HASIL
+_Ini bagian terpenting. Dijelaskan makna angka-angka yang muncul di terminal tadi._
+
+**A. Validasi Model (Bukti Ilmiah)**
+Di terminal tertulis:
+
+    - Silhouette Score: 0.4720
+
+- **Artinya:** Angka 0.47 menunjukkan bahwa cluster yang terbentuk **terpisah dengan cukup baik**. Data tidak menumpuk acak. Ini membuktikan model K-Means valid untuk digunakan.
+- **PCA Plot (plot_pca_cluster.png):** Gambar titik-titik warna-warni itu adalah bukti visualnya. Kamu bisa lihat titik-titik berkumpul sesuai warnanya, tidak tercampur baur.
+
+**B. Profil Cluster (Insight Bisnis)**
+Dari tabel Cluster Profiles di terminal, inilah temuan mesinnya:
+
+- **CLUSTER 2: "Zona Aman / Terkendali"**
+    - _Data:_ Memiliki **Indeks Risiko Bencana Tertinggi (158)**, namun kerusakan rumahnya "hanya" 5.000-an.
+    - _Kesimpulan:_ Wilayah ini secara geografis sangat rawan, namun mungkin infrastrukturnya sudah cukup siap sehingga kerusakannya tidak separah Cluster 1.
+    - _Tindakan:_ Perkuat simulasi bencana dan EWS (_Early Warning System_).
